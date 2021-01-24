@@ -46,7 +46,7 @@ func getPADefaultSink() (string, error) {
 	return "", errors.New("Could not find PulseAudio Default Sink")
 }
 
-var volumePattern = regexp.MustCompile(`\d+%`)
+var volumePattern = regexp.MustCompile(`\d+`)
 
 func parseVolume(out string) (int, error) {
 	sinkName, sinkNameErr := getPADefaultSink()
