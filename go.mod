@@ -1,4 +1,4 @@
-module github.com/itchyny/volume-go
+module github.com/neuling/volume-go
 
 go 1.14
 

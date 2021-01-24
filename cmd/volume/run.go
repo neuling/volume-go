@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"strconv"
 
-	"github.com/itchyny/volume-go"
+	"github.com/neuling/volume-go"
 )
 
 func run(args []string, out io.Writer) error {

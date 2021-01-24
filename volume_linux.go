@@ -23,7 +23,7 @@ func cmdEnv() []string {
 
 func getVolumeCmd() []string {
 	if useAmixer {
-		return []string{"amixer", "get", "Master"}
+		return []string{"amixer", "get", "Playback"}
 	}
 	return []string{"pactl", "list", "sinks"}
 }
@@ -77,7 +77,7 @@ func parseVolume(out string) (int, error) {
 
 func setVolumeCmd(volume int) []string {
 	if useAmixer {
-		return []string{"amixer", "set", "Master", strconv.Itoa(volume) + "%"}
+		return []string{"amixer", "set", "Playback", strconv.Itoa(volume) + "%"}
 	}
 	return []string{"pactl", "set-sink-volume", "@DEFAULT_SINK@", strconv.Itoa(volume) + "%"}
 }
@@ -91,14 +91,14 @@ func increaseVolumeCmd(diff int) []string {
 		sign = "-"
 	}
 	if useAmixer {
-		return []string{"amixer", "set", "Master", strconv.Itoa(diff) + "%" + sign}
+		return []string{"amixer", "set", "Playback", strconv.Itoa(diff) + "%" + sign}
 	}
 	return []string{"pactl", "--", "set-sink-volume", "@DEFAULT_SINK@", sign + strconv.Itoa(diff) + "%"}
 }
 
 func getMutedCmd() []string {
 	if useAmixer {
-		return []string{"amixer", "get", "Master"}
+		return []string{"amixer", "get", "Playback"}
 	}
 	return []string{"pactl", "list", "sinks"}
 }
@@ -134,14 +134,14 @@ func parseMuted(out string) (bool, error) {
 
 func muteCmd() []string {
 	if useAmixer {
-		return []string{"amixer", "-D", "pulse", "set", "Master", "mute"}
+		return []string{"amixer", "-D", "pulse", "set", "Playback", "mute"}
 	}
 	return []string{"pactl", "set-sink-mute", "@DEFAULT_SINK@", "1"}
 }
 
 func unmuteCmd() []string {
 	if useAmixer {
-		return []string{"amixer", "-D", "pulse", "set", "Master", "unmute"}
+		return []string{"amixer", "-D", "pulse", "set", "Playback", "unmute"}
 	}
 	return []string{"pactl", "set-sink-mute", "@DEFAULT_SINK@", "0"}
 }
