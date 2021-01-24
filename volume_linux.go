@@ -66,7 +66,7 @@ func parseVolume(out string) (int, error) {
 			paDefaultSinkHooked = true
 		}
 
-		if useAmixer && strings.Contains(s, "Playback") && strings.Contains(s, "%") ||
+		if useAmixer && strings.Contains(s, "Front Left:") && strings.Contains(s, "%") ||
 			!useAmixer && paDefaultSinkHooked && strings.HasPrefix(s, "Volume:") {
 			volumeStr := volumePattern.FindString(s)
 			return strconv.Atoi(volumeStr[:len(volumeStr)-1])
